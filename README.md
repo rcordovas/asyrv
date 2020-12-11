@@ -51,13 +51,25 @@ Para ver una copia de esta licencia visita http://www.gnu.org/licenses/gpl-3.0.t
 ASYRV es fácil de instalar y Puede ser configurado Linux por el momento. Los siguientes son los pasos básicos que debes seguir en tu entorno Para la instalacion. Puedes usar WAMP, XAMP o cualquier cosa Apache-PHP-MYSQL para que funcione correctamente
 
 
-## Instalación Manual Kali Linux 2018
+## Instalación Manual Kali Linux 2019
+
+Importe la clave GPG y agregue el repositorio de PPA.
+```php
+sudo apt -y install lsb-release apt-transport-https ca-certificates 
+sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+```
+
+Luego agregue repositorio y actualizamos la lista de paquetes disponibles.
+```php
+echo "deb https://packages.sury.org/php/ buster main" | sudo tee /etc/apt/sources.list.d/php.list
+sudo apt update
+```
 
 Copie la carpeta asyrv en su directorio web raíz. Asegúrese de que el nombre del directorio sea asyrv. Realice los cambios necesarios en asyrv/config.php para la conexión a la base de datos. Ejemplo a continuación:<br><br>
 
-Instalacion dependencias:<br>
+Instalacion dependencias para php7.3:<br>
 ```php
-sudo apt-get install php-json php-xml php-soap php-mysql
+sudo apt-get install php7.3-xml php7.3-json php7.3-soap php7.3-mysql
 ```
 
 Levantamos el servidor apache2 y mysql:
@@ -98,7 +110,7 @@ $pass = 'asyrv';
 Realice los siguientes cambios en el archivo de configuración de PHP. 
 
 ```php
-nano /etc/php/7.2/apache2/php.ini
+nano /etc/php/7.3/apache2/php.ini
 file_uploads = on 
 allow_url_fopen = on 
 allow_url_include = on 
